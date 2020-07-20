@@ -1,0 +1,154 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Sample API",
+    "description": "Optional multiline or single-line description in [CommonMark](http://commonmark.org/help/) or HTML.",
+    "version": "0.0.1"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/api",
+      "description": "Адрес, по которому принимаются запросы"
+    }
+  ],
+  "paths": {
+    "/movies/create": {
+      "post": {
+        "summary": "Создает фильм",
+        "description": "Получает объект с свойствами фильма и создает с ними фильм",
+        "responses": {
+          "201": {
+            "success": true,
+            "message": "string"
+          },
+          "400": {
+            "success": false,
+            "message": "string"
+          }
+        }
+      }
+    },
+    "/movies/:id": {
+      "get": {
+        "summary": "Информация о конкретном фильме",
+        "description": "Получает id фильма и возвращает свойства этого фильма из БД",
+        "responses": {
+          "200": {
+            "success": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "time":  {
+                        "type": "string"
+                      },
+                      "rating": {
+                        "type": "number"
+                      },
+                      "img":  {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "success": false,
+            "error": "string"
+          },
+          "404": {
+            "success": false,
+            "error": "string"
+          }
+        }
+      },
+      "put": {
+        "summary": "Обновление данных о фильме",
+        "description": "Получает объект с новыми свойствами фильма и обновляет данные фильма в БД",
+        "responses": {
+          "200": {
+            "success": true,
+            "message": "string"
+          },
+          "400": {
+            "success": false,
+            "message": "string"
+          },
+          "404": {
+            "success": false,
+            "message": "string"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Удаляет фильм",
+        "description": "Получает id фильма и удаляет этот фильм из БД",
+        "responses": {
+          "200": {
+            "success": true,
+            "message": "string"
+          },
+          "400": {
+            "success": false,
+            "message": "string"
+          },
+          "404": {
+            "success": false,
+            "message": "string"
+          }
+        }
+      }
+    },
+    "/movies": {
+      "get": {
+        "summary": "Список всех фильмов",
+        "description": "Возвращает массив из всех фильмов и их свойств",
+        "responses": {
+          "200": {
+            "success": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "time":  {
+                        "type": "string"
+                      },
+                      "rating": {
+                        "type": "number"
+                      },
+                      "img":  {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "success": false,
+            "error": "string"
+          },
+          "404": {
+            "success": false,
+            "error": "string"
+          }
+        }
+      }
+    }
+  }
+}

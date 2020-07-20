@@ -2,6 +2,8 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const dotenv = require('dotenv')
+const swaggerUi = require('swagger-ui-express')
+const swaggerScheme = require('./openApi.json')
 
 dotenv.config()
 
@@ -31,5 +33,7 @@ app.get('/', (request, response) => {
 })
 
 app.use('/api', movieRouter)
+
+app.use('/docs/', swaggerUi.serve, swaggerUi.setup(swaggerScheme))
 
 app.listen(apiPort)
